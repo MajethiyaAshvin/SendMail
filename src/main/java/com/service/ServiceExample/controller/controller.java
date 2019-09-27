@@ -27,6 +27,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+
 @RestController
 public class controller {
 	@RequestMapping(value = "/sendemail")
@@ -42,13 +43,13 @@ public class controller {
 		   props.put("mail.smtp.port", "587");
 		   Session session = Session.getInstance(props, new javax.mail.Authenticator() {
 		      protected PasswordAuthentication getPasswordAuthentication() {
-		         return new PasswordAuthentication("tutorialspoint@gmail.com", "abc@123");
+		         return new PasswordAuthentication("ashvinmajethiya22@gmail.com", "atmakumar");
 		      }
 		   });
 		   
 		   Message msg = new MimeMessage(session);
-		   msg.setFrom(new InternetAddress("tutorialspoint@gmail.com", false));
-		   msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse("tutorialspoint@gmail.com"));
+		   msg.setFrom(new InternetAddress("ashvinmajethiya22@gmail.com", false));
+		   msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse("ashvinsculptsoft@gmail.com"));
 		   msg.setSubject("Tutorials point email");
 		   msg.setContent("Tutorials point email", "text/html");
 		   msg.setSentDate(new Date());
@@ -63,7 +64,6 @@ public class controller {
 		   Transport.send(msg);   
 		}
 	
-	
 	@RequestMapping(value = "/upload", method = RequestMethod.POST,consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
 		      public String fileUpload(@RequestParam("file") MultipartFile file) throws IOException {
 		      File convertFile = new File("/var/tmp/"+file.getOriginalFilename());
@@ -72,8 +72,6 @@ public class controller {
 		      fout.write(file.getBytes());
 		      fout.close();
 		      return "File is upload successfully";}
-	
-	
 	@RequestMapping(value = "/download", method = RequestMethod.GET) 
 	public ResponseEntity<Object> downloadFile() throws IOException  {
 	   String filename = "/var/tmp/HELP.md";
